@@ -1,0 +1,30 @@
+const express = require("express");
+const connectDB = require("./config/db");
+require("dotenv").config();
+const Days = require('./models/DaysSchema');
+// const days = require('./utilities/data');
+const Meals = require('./models/MealsSchema');
+// const meals = require('./utilities/data');
+
+
+//Initialize our app variable with Express
+const app = express();
+
+//Connect Database
+connectDB();
+
+// Initialize middleware
+app.use(express.json({ extended: false }));
+
+//Single endpoint just to test API. Send data to browser
+// app.get('/', (req, res) => res.send('API Running'))
+
+//Define Routes
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/days", require("./routes/api/days"));
+app.use("/api/meals", require("./routes/api/meals"));
+
+
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

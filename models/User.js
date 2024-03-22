@@ -1,20 +1,19 @@
-const daySchema = new mongoose.Schema(
+const mongoose = require("mongoose");
 
-);
-
-const User = mongoose.model('users', userSchema);
-
-module.exports = User;
-
-{
-  Day: {
-    type: string;
+const UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
   },
-  Chef: {
-    type: string;
+  email: {
+    type: String,
+    required: true,
   },
-  Meal: {
-    type: string;
-  },
-}
-  
+  password: {
+    type: String,
+    required: true,
+  }
+
+});
+
+module.exports = User = mongoose.model("user", UserSchema);

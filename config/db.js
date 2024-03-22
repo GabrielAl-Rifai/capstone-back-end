@@ -1,24 +1,21 @@
-const express = require("express");
-const connectDB = require("./config/db");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
-//Initialize our app variable with Express
-const app = express();
+const db = process.env.mongoURI;
 
-//Connect Database
-connectDB();
+const connectDB = async () => {
+  try {
+    mongoose.set("strictQuery", false);
+    await mongoose.connect(db, {
+      useNewUrlParser: true,
+    });
 
-// Initialize middleware
-app.use(express.json({ extended: false }));
+    console.log("Mongo DB Connected...");
+  } catch (err) {
+    console.error(err.message);
 
-//Single endpoint just to test API. Send data to browser
-// app.get('/', (req, res) => res.send('API Running'))
+    process.exit(1);
+  }
+};
 
-//Define Routes
-app.use("/api/users", require("./routes/api/users"));
-app.use("/api/auth", require("./routes/api/auth"));
-
-// Enviromental Variables
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+module.exports = connectDB;
