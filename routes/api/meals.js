@@ -1,6 +1,8 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Meals = require("../../models/MealsSchema");
+const Meals = require('../../models/MealsSchema');
+
+// router.post("/",[])
 
 app.get('/seed', async (req, res) => {
   await Meals.deleteMany({});
@@ -10,7 +12,7 @@ app.get('/seed', async (req, res) => {
 });
 
 //Create
-app.post('/', async (req, res) => {
+app.post('http://localhost:3000/api/meals', async (req, res) => {
   try {
     let newMeal = new Meals(req.body);
     await newMeal.save();
@@ -23,7 +25,7 @@ app.post('/', async (req, res) => {
 });
 
 //Read
-app.get('/', async (req, res) => {
+app.get('http://localhost:3000/api/meals', async (req, res) => {
   try {
     const allMeals = await Meals.find({});
     res.json(allMeals);
@@ -34,7 +36,7 @@ app.get('/', async (req, res) => {
 });
 
 //Update
-app.put('/:id', async (req, res) => {
+app.put('http://localhost:3000/api/meals:id', async (req, res) => {
   try {
     const updatedMeal = await Meals.findByIdAndUpdate(
       req.params.id,
@@ -50,7 +52,7 @@ app.put('/:id', async (req, res) => {
 });
 
 //Delete
-app.delete('/:id', async (req, res) => {
+app.delete('http://localhost:3000/api/meals:id', async (req, res) => {
   try {
     await Meals.findByIdAndDelete(req.params.id);
 

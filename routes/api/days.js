@@ -4,7 +4,7 @@ const Days = require("../../models/DaysSchema");
 
 
 
-app.get('/seed', async (req, res) => {
+app.get('http://localhost:3000/api/days/seed', async (req, res) => {
   await Days.deleteMany({});
   await Days.create(Days);
 
@@ -12,7 +12,7 @@ app.get('/seed', async (req, res) => {
 });
 
 //Create
-app.post('/', async (req, res) => {
+app.post('http://localhost:3000/api/days', async (req, res) => {
   try {
     let newDay = new Days(req.body);
     await newDays.save();
@@ -25,7 +25,7 @@ app.post('/', async (req, res) => {
 });
 
 //Read
-app.get('/', async (req, res) => {
+app.get('http://localhost:3000/api/days', async (req, res) => {
   try {
     const allDays = await Days.find({});
     res.json(allDays);
@@ -36,7 +36,7 @@ app.get('/', async (req, res) => {
 });
 
 //Update
-app.put('/:id', async (req, res) => {
+app.put('http://localhost:3000/api/days:id', async (req, res) => {
   try {
     const updatedDay = await Days.findByIdAndUpdate(
       req.params.id,
@@ -52,7 +52,7 @@ app.put('/:id', async (req, res) => {
 });
 
 //Delete
-app.delete('/:id', async (req, res) => {
+app.delete('http://localhost:3000/api/days:id', async (req, res) => {
   try {
     await Days.findByIdAndDelete(req.params.id);
 
