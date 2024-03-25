@@ -1,6 +1,6 @@
-const express = require('express');
-const connectDB = require('./config/db');
-require('dotenv').config();
+const express = require("express");
+const connectDB = require("./config/db");
+require("dotenv").config();
 // const Days = require('./models/DaysSchema');
 // const days = require('./utilities/data');
 // const Meals = require('./models/MealsSchema');
@@ -19,13 +19,12 @@ app.use(express.json({ extended: false }));
 // app.get('/', (req, res) => res.send('API Running'))
 
 //Define Routes
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
 app.use('/api/days', require('./routes/api/days'));
-app.use('/api/meals', require('./routes/api/meals'));
+// app.use('/api/meals', require('./routes/api/meals'));
 
 // Enviromental Variables
 const PORT = process.env.PORT || 3000;
-
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

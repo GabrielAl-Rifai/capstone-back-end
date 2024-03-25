@@ -13,6 +13,26 @@ const MealsSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  ingredients: {
+    type: String,
+    required: false,
+  },
+  recipe: {
+    type: String,
+    required: false,
+  },
+  source: {
+    type: String,
+    required: false,
+  },
+  userID: {
+    type: String,
+    required: false,
+  },
+  dayOfWeek: {
+    type: String,
+    required: false,
+  },
   image: {
     type: String,
     required: false,
@@ -24,6 +44,7 @@ const MealsSchema = new mongoose.Schema({
 });
 
 module.exports = Meals = mongoose.model("meals", MealsSchema);
+
 //     id: {
 //       type: string;
 //     },

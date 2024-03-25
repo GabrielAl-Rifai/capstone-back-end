@@ -1,15 +1,19 @@
 const mongoose = require("mongoose");
 
 const DaysSchema = new mongoose.Schema({
-  day: {
+  dayOfWeek: {
     type: String,
     required: false,
   },
-  chef: {
+  userID: {
     type: String,
     required: false,
   },
-  meal: {
+  mealID: {
+    type: String,
+    required: false,
+  },
+  scheduleID: {
     type: String,
     required: false,
   },
