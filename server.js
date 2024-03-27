@@ -23,6 +23,7 @@ app.use(cors());
 //Define Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/search", require("./routes/api/search"));
 // app.use('/api/days', require('./routes/api/days'));
 // app.use('/api/meals', require('./routes/api/meals'));
 
