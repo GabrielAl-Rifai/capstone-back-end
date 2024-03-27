@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Days = require("../../models/DaysSchema");
+const Days = require("../../models/ThisWeeksMeals");
 
 app.get('/api/days/seed', async (req, res) => {
   await Days.deleteMany({});

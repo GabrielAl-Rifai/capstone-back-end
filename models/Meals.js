@@ -25,8 +25,10 @@ const MealsSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  userID: {
-    type: String,
+
+  userID: {   // Reference to the User schema
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User',
     required: false,
   },
   dayOfWeek: {
@@ -43,7 +45,7 @@ const MealsSchema = new mongoose.Schema({
   },
 });
 
-module.exports = Meals = mongoose.model("meals", MealsSchema);
+module.exports = Meals = mongoose.model("Meals", MealsSchema);
 
 //     id: {
 //       type: string;
