@@ -1,15 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Meal = require("../../models/Meal");
+const Recipe = require("../../models/Recipe");
 
 
 
-router.get("/seed", async (req, res) => {
-  await Meal.deleteMany({});
-  await Meal.create(Meal);
 
-  res.send(`Database Seeded`);
-});
 
 
 
@@ -17,10 +12,10 @@ router.get("/seed", async (req, res) => {
 //Create
 router.post('/', async (req, res) => {
   try {
-    let newMeal = new Meal(req.body);
-    await newMeal.save();
+    let newRecipe = new Recipe(req.body);
+    await newRecipe.save();
 
-    res.json(newMeal);
+    res.json(newRecipe);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server Error" });
@@ -28,10 +23,10 @@ router.post('/', async (req, res) => {
 });
 
 //Read
-router.get('/api/Meal', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const allMeal = await Meal.find({});
-    res.json(allMeal);
+    const allRecipes = await Recipe.find({});
+    res.json(allRecipe);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server Error" });
@@ -41,11 +36,11 @@ router.get('/api/Meal', async (req, res) => {
 //Update
 router.put('/:id', async (req, res) => {
   try {
-    const updatedMeal = await Meal.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedRecipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
 
-    res.json(updatedMeal);
+    res.json(updatedRecipe);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server Error" });
@@ -55,7 +50,7 @@ router.put('/:id', async (req, res) => {
 //Delete
 router.delete(':id', async (req, res) => {
   try {
-    await Meal.findByIdAndDelete(req.params.id);
+    await Recipe.findByIdAndDelete(req.params.id);
 
     res.status(200).json({ msg: "Item Deleted" });
   } catch (err) {
@@ -64,9 +59,9 @@ router.delete(':id', async (req, res) => {
   }
 });
 
-Error checking middleware
-app.use((err, _req, res, next) => {
-  res.status(500).send("Seems like we messed up somewhere...");
-});
+// Error checking middleware
+// app.use((err, _req, res, next) => {
+//   res.status(500).send("Seems like we messed up somewhere...");
+// });
 
 module.exports = router;
