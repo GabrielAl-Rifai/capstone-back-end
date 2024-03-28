@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const MealsSchema = new mongoose.Schema({
+const MealSchema = new mongoose.Schema({
   id: {
     type: String,
     required: false,
@@ -26,9 +26,10 @@ const MealsSchema = new mongoose.Schema({
     required: false,
   },
 
-  userID: {   // Reference to the User schema
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'User',
+  userID: {
+    // Reference to the User schema
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: false,
   },
   dayOfWeek: {
@@ -45,7 +46,7 @@ const MealsSchema = new mongoose.Schema({
   },
 });
 
-module.exports = Meals = mongoose.model("Meals", MealsSchema);
+module.exports = Meal = mongoose.model("meal", MealSchema);
 
 //     id: {
 //       type: string;

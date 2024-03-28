@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const Meals = require("../../models/Meals");
+const Meal = require("../../models/Meal");
 
 
 
 router.get("/seed", async (req, res) => {
-  await Meals.deleteMany({});
-  await Meals.create(Meals);
+  await Meal.deleteMany({});
+  await Meal.create(Meal);
 
   res.send(`Database Seeded`);
 });
 
-// router.post("/",[])
+
 
 
 //Create
-router.post('/api/meals', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    let newMeal = new Meals(req.body);
+    let newMeal = new Meal(req.body);
     await newMeal.save();
 
     res.json(newMeal);
@@ -28,10 +28,10 @@ router.post('/api/meals', async (req, res) => {
 });
 
 //Read
-router.get('/api/meals', async (req, res) => {
+router.get('/api/Meal', async (req, res) => {
   try {
-    const allMeals = await Meals.find({});
-    res.json(allMeals);
+    const allMeal = await Meal.find({});
+    res.json(allMeal);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server Error" });
@@ -39,9 +39,9 @@ router.get('/api/meals', async (req, res) => {
 });
 
 //Update
-router.put('/api/meals', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    const updatedMeal = await Meals.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedMeal = await Meal.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
 
@@ -53,9 +53,9 @@ router.put('/api/meals', async (req, res) => {
 });
 
 //Delete
-app.delete('/api/meals:id', async (req, res) => {
+router.delete(':id', async (req, res) => {
   try {
-    await Meals.findByIdAndDelete(req.params.id);
+    await Meal.findByIdAndDelete(req.params.id);
 
     res.status(200).json({ msg: "Item Deleted" });
   } catch (err) {
@@ -64,7 +64,7 @@ app.delete('/api/meals:id', async (req, res) => {
   }
 });
 
-//Error checking middleware
+Error checking middleware
 app.use((err, _req, res, next) => {
   res.status(500).send("Seems like we messed up somewhere...");
 });

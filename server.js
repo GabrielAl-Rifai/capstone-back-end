@@ -2,10 +2,6 @@ const express = require("express");
 const connectDB = require("./config/db");
 require("dotenv").config();
 const cors = require("cors");
-// const Days = require('./models/DaysSchema');
-// const days = require('./utilities/data');
-// const Meals = require('./models/MealsSchema');
-// const meals = require('./utilities/data');
 
 //Initialize our app variable with Express
 const app = express();
@@ -24,7 +20,6 @@ app.use(cors());
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/search", require("./routes/api/search"));
-// app.use('/api/days', require('./routes/api/days'));
 // app.use('/api/meals', require('./routes/api/meals'));
 
 // Enviromental Variables
